@@ -1,0 +1,481 @@
+# Kevy 投流哨兵 - OpenAPI 引用配置
+# 各广告平台 OpenAPI 接入参考
+
+# ============================================================
+# 一、巨量引擎 & 千川
+# ============================================================
+oceanengine:
+  name: "巨量引擎开放平台"
+  docs: "https://open.oceanengine.com/doc/"
+  sdk: "https://github.com/oceanengine/oceanengine_python_sdk"
+  version: "v3.0"
+
+  auth:
+    type: "OAuth 2.0"
+    token_url: "https://ad.oceanengine.com/open_api/oauth2/access_token/"
+    refresh_url: "https://ad.oceanengine.com/open_api/oauth2/refresh_token/"
+    grant_type: "authorization_code"
+    token_lifetime: "24h"
+
+  apis:
+    # 账户管理
+    account_info: "https://ad.oceanengine.com/open_api/v3.0/advertiser/info/"
+    account_budget: "https://ad.oceanengine.com/open_api/v3.0/advertiser/budget/get/"
+
+    # 计划管理
+    campaign_list: "https://ad.oceanengine.com/open_api/v3.0/campaign/get/"
+    campaign_create: "https://ad.oceanengine.com/open_api/v3.0/campaign/create/"
+    campaign_update: "https://ad.oceanengine.com/open_api/v3.0/campaign/update/"
+    campaign_status: "https://ad.oceanengine.com/open_api/v3.0/campaign/status/update/"
+
+    # 广告组
+    ad_list: "https://ad.oceanengine.com/open_api/v3.0/ad/get/"
+    ad_create: "https://ad.oceanengine.com/open_api/v3.0/ad/create/"
+    ad_update: "https://ad.oceanengine.com/open_api/v3.0/ad/update/"
+    ad_status: "https://ad.oceanengine.com/open_api/v3.0/ad/status/update/"
+    ad_bid: "https://ad.oceanengine.com/open_api/v3.0/ad/budget/update/"
+
+    # 创意
+    creative_list: "https://ad.oceanengine.com/open_api/v3.0/creative/get/"
+    creative_status: "https://ad.oceanengine.com/open_api/v3.0/creative/status/update/"
+
+    # 报表
+    report_ad: "https://ad.oceanengine.com/open_api/v3.0/report/ad/get/"
+    report_campaign: "https://ad.oceanengine.com/open_api/v3.0/report/campaign/get/"
+
+  fields_for_monitor:
+    campaign:
+      - "广告计划ID"
+      - "广告计划名称"
+      - "状态"
+      - "出价"
+      - "预算"
+      - "花费"
+    metrics:
+      - "展现量"
+      - "点击量"
+      - "点击率(CTR)"
+      - "平均点击价格(CPC)"
+      - "转化数"
+      - "转化成本"
+      - "转化率(CVR)"
+      - "千次展现成本(CPM)"
+
+  qianchuan_extension:
+    name: "千川"
+    note: "基于巨量引擎API，额外支持直播间/商品推广"
+    extra_apis:
+      product_list: "https://ad.oceanengine.com/open_api/v3.0/qianchuan/product/get/"
+      shop_info: "https://ad.oceanengine.com/open_api/v3.0/qianchuan/shop/get/"
+      live_report: "https://ad.oceanengine.com/open_api/v3.0/qianchuan/report/live/get/"
+    extra_fields:
+      - "直播间观看人数"
+      - "商品点击"
+      - "商品成交额(GMV)"
+      - "ROI(投产比)"
+
+
+# ============================================================
+# 二、百度营销
+# ============================================================
+baidu:
+  name: "百度营销API"
+  docs: "https://developer.baidu.com/baiduads"
+  sdk: "https://github.com/baidu-aip/baiduads_sdk"
+  version: "v3.0"
+
+  auth:
+    type: "OAuth 2.0 + API Key"
+    token_url: "https://openapi.baidu.com/oauth/2.0/token"
+    grant_type: "client_credentials"
+    extra: "需申请应用 access_token + 开发者秘钥"
+
+  apis:
+    # 账户管理
+    account_info: "https://api.baidu.com/json/sms/service/AccountService/getAccountInfo"
+
+    # 计划管理
+    campaign_list: "https://api.baidu.com/json/sms/service/CampaignService/getCampaign"
+    campaign_operation: "https://api.baidu.com/json/sms/service/CampaignService/updateCampaign"
+
+    # 单元管理
+    adgroup_list: "https://api.baidu.com/json/sms/service/AdgroupService/getAdgroup"
+    adgroup_operation: "https://api.baidu.com/json/sms/service/AdgroupService/updateAdgroup"
+
+    # 关键词
+    keyword_list: "https://api.baidu.com/json/sms/service/KeywordService/getKeyword"
+    keyword_bid: "https://api.baidu.com/json/sms/service/KeywordService/updateBid"
+
+    # 创意
+    creative_list: "https://api.baidu.com/json/sms/service/CreativeService/getCreative"
+    creative_status: "https://api.baidu.com/json/sms/service/CreativeService/updateCreative"
+
+    # 报表
+    report: "https://api.baidu.com/json/sms/service/ReportService/getReportId"
+
+  fields_for_monitor:
+    campaign:
+      - "计划名称"
+      - "状态"
+      - "预算"
+      - "消费"
+    metrics:
+      - "展现"
+      - "点击"
+      - "CTR"
+      - "CPC"
+      - "转化"
+      - "转化率"
+      - "转化成本"
+
+
+# ============================================================
+# 三、磁力引擎（快手）
+# ============================================================
+kuaishou:
+  name: "磁力引擎开放平台"
+  docs: "https://open.kuaishou.com/"
+  sdk: "https://github.com/Kuaishou/kuaishou-ad-sdk"
+  version: "v2.0"
+
+  auth:
+    type: "OAuth 2.0 + Sign签名"
+    token_url: "https://ad.e.kuaishou.com/open_api/oauth2/access_token"
+    refresh_url: "https://ad.e.kuaishou.com/open_api/oauth2/refresh_token"
+    extra: "所有请求需按规则生成签名(sign)"
+    sign_method: "MD5(AppSecret + params + AppSecret) 或 SHA256"
+
+  apis:
+    # 账户
+    account_info: "https://ad.e.kuaishou.com/open_api/v2/account/info"
+
+    # 计划
+    campaign_list: "https://ad.e.kuaishou.com/open_api/v2/campaign/list"
+    campaign_create: "https://ad.e.kuaishou.com/open_api/v2/campaign/create"
+    campaign_update: "https://ad.e.kuaishou.com/open_api/v2/campaign/update"
+    campaign_status: "https://ad.e.kuaishou.com/open_api/v2/campaign/update/status"
+
+    # 广告单元
+    ad_list: "https://ad.e.kuaishou.com/open_api/v2/ad/list"
+    ad_update: "https://ad.e.kuaishou.com/open_api/v2/ad/update"
+    ad_budget: "https://ad.e.kuaishou.com/open_api/v2/ad/budget/update"
+    ad_bid: "https://ad.e.kuaishou.com/open_api/v2/ad/bid/update"
+
+    # 创意
+    creative_list: "https://ad.e.kuaishou.com/open_api/v2/creative/list"
+
+    # 报表
+    report: "https://ad.e.kuaishou.com/open_api/v2/report/ad"
+
+  fields_for_monitor:
+    campaign:
+      - "计划ID"
+      - "计划名称"
+      - "状态"
+      - "出价"
+      - "预算"
+    metrics:
+      - "展示数"
+      - "点击数"
+      - "点击率"
+      - "平均点击单价"
+      - "激活数"
+      - "激活成本"
+      - "千次展示成本"
+
+
+# ============================================================
+# 四、腾讯广告（朋友圈/公众号）
+# ============================================================
+tencent:
+  name: "腾讯广告营销API"
+  docs: "https://developers.e.qq.com/docs"
+  sdk: "https://github.com/tencentad/marketing-api-python-sdk"
+  version: "v3.0"
+
+  auth:
+    type: "OAuth 2.0"
+    token_url: "https://api.e.qq.com/oauth2/token"
+    refresh_url: "https://api.e.qq.com/oauth2/token"
+    grant_type: "authorization_code"
+    account_type: "account_id(需映射)"
+
+  apis:
+    # 账户
+    account_list: "https://api.e.qq.com/v3.0/account/get"
+
+    # 广告组
+    campaign_list: "https://api.e.qq.com/v3.0/campaigns/get"
+    campaign_create: "https://api.e.qq.com/v3.0/campaigns/add"
+    campaign_update: "https://api.e.qq.com/v3.0/campaigns/update"
+
+    # 广告组(AdGroup)
+    adgroup_list: "https://api.e.qq.com/v3.0/adgroups/get"
+    adgroup_create: "https://api.e.qq.com/v3.0/adgroups/add"
+    adgroup_update: "https://api.e.qq.com/v3.0/adgroups/update"
+    adgroup_bid: "https://api.e.qq.com/v3.0/adgroups/update/bid"
+
+    # 创意
+    creative_list: "https://api.e.qq.com/v3.0/creative_elements/get"
+
+    # 报表
+    report: "https://api.e.qq.com/v3.0/reports/adgroup/get/"
+
+  fields_for_monitor:
+    adgroup:
+      - "广告组ID"
+      - "广告组名称"
+      - "投放状态"
+      - "出价方式"
+      - "出价"
+      - "日限额"
+    metrics:
+      - "曝光量"
+      - "点击量"
+      - "点击率"
+      - "消耗"
+      - "转化量"
+      - "转化率"
+      - "转化成本"
+      - "ROI"
+
+
+# ============================================================
+# 五、统一监控字段映射
+# ============================================================
+unified_mapping:
+  # 从各平台字段到统一字段的映射
+  campaign_id:
+    巨量引擎: "ad_id / campaign_id"
+    千川: "ad_id / campaign_id"
+    百度: "campaignId"
+    磁力引擎: "campaign_id"
+    腾讯: "campaign_id / adgroup_id"
+
+  status:
+    巨量引擎: "status: AD_STATUS_ALL/AD_STATUS_DELIVERING/..."
+    百度: "pause: true/false + status"
+    磁力引擎: "campaign.status"
+    腾讯: "configured_status: AD_STATUS_NORMAL/AD_STATUS_SUSPEND"
+
+  cost:
+    巨量引擎: "stat_cost"
+    百度: "cost"
+    磁力引擎: "cost"
+    腾讯: "cost"
+
+  impressions:
+    巨量引擎: "show_cnt"
+    百度: "impression"
+    磁力引擎: "impression"
+    腾讯: "impression"
+
+  clicks:
+    巨量引擎: "click_cnt"
+    百度: "click"
+    磁力引擎: "click"
+    腾讯: "click"
+
+  conversions:
+    巨量引擎: "convert_cnt"
+    百度: "conversion"
+    磁力引擎: "active_count"
+    腾讯: "conversions_count"
+
+  ctr:
+    巨量引擎: "ctr"
+    百度: "ctr"
+    磁力引擎: "click_rate"
+    腾讯: "ctr"
+
+  cpc:
+    巨量引擎: "cpc_platform"
+    百度: "cpc"
+    磁力引擎: "cpc"
+    腾讯: "cpc"
+
+
+# ============================================================
+# 六、定时任务 & 监控框架
+# ============================================================
+scheduler_frameworks:
+  - name: "APScheduler"
+    url: "https://github.com/agronholm/apscheduler"
+    language: "Python"
+    usage: |
+      投流哨兵核心调度器，支持:
+      - CronTrigger: 每日汇总(23:50)
+      - IntervalTrigger: 监控循环(5min)
+      - DateTrigger: 一次性任务
+      - JobStore: SQLAlchemy/SQLite/MongoDB持久化
+
+  - name: "Celery"
+    url: "https://github.com/celery/celery"
+    language: "Python"
+    usage: |
+      分布式任务队列，适合:
+      - 多平台并行数据拉取
+      - 异步耗时的API调用
+      - 定时周期性任务 (Celery Beat)
+      - 多Worker扩展
+
+  - name: "Apache Airflow"
+    url: "https://github.com/apache/airflow"
+    language: "Python"
+    usage: |
+      复杂工作流调度，适合:
+      - DAG依赖编排 (拉取→计算→告警→日志)
+      - 失败重试与告警
+      - 历史执行记录
+      - 复杂ETL管道
+
+  - name: "Prometheus + Grafana"
+    url: "https://prometheus.io/"
+    usage: |
+      监控与可视化:
+      - 投放指标采集 (消耗/CTR/CPC/ROI)
+      - 实时Grafana看板
+      - 告警规则配置
+      - 历史趋势分析
+
+  - name: "Crontab (Linux)"
+    usage: |
+      轻量级定时任务，适合:
+      - 简单的定时curl请求检查
+      - 低部署成本场景
+
+
+# ============================================================
+# 七、消息推送渠道
+# ============================================================
+notification_channels:
+  wecom:
+    name: "企业微信机器人"
+    type: "Webhook"
+    api: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY"
+    format: "Markdown / Text / News"
+    rate_limit: "20条/分钟"
+    doc: "https://developer.work.weixin.qq.com/document/path/91770"
+
+  dingtalk:
+    name: "钉钉机器人"
+    type: "Webhook"
+    api: "https://oapi.dingtalk.com/robot/send?access_token=YOUR_TOKEN"
+    format: "Markdown / Text / ActionCard / FeedCard"
+    rate_limit: "20条/分钟"
+    doc: "https://open.dingtalk.com/document/robots/custom-robot-access"
+
+  feishu:
+    name: "飞书机器人"
+    type: "Webhook"
+    api: "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_TOKEN"
+    format: "Markdown / Text / Card(Interactive)"
+    doc: "https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN"
+
+  sms:
+    name: "短信推送"
+    providers:
+      - "twilio (国际)"
+      - "aliyun-sms (国内)"
+      - "tencent-sms (国内)"
+    usage: "仅用于P0紧急告警: 账户封禁、预算严重超支"
+
+
+# ============================================================
+# 八、账户配置模板
+# ============================================================
+account_config_template:
+  platform: "巨量引擎"        # 巨量引擎/千川/百度/磁力引擎/腾讯
+  account_id: "acc_xxxxx"
+  account_name: "教育-暑期投放"
+  industry: "教育"            # 教育/医疗/电商/金融/游戏/家装/美妆
+  daily_budget: 50000         # 日预算 ¥
+  monthly_budget: 500000      # 月预算 ¥
+  target_cpl: 100             # 目标线索成本 ¥
+  target_roi: 3.0             # 目标ROI
+  is_active: true
+  alert_webhook: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx"
+
+  # 各平台认证凭据
+  credentials:
+    app_id: "xxx"
+    app_secret: "xxx"
+    access_token: "xxx"
+    refresh_token: "xxx"
+
+
+# ============================================================
+# 九、告警规则配置
+# ============================================================
+alert_rules:
+  cost_surge:
+    name: "消耗突增"
+    condition: "当前小时消耗 > 前1小时均值 × 2.0"
+    level: "P1_HIGH"
+    cooldown_min: 10
+
+  cost_plunge:
+    name: "消耗突降"
+    condition: "当前小时消耗 < 前1小时均值 × 0.5"
+    level: "P2_WARNING"
+    cooldown_min: 15
+
+  ctr_low:
+    name: "CTR过低"
+    condition: "CTR < 0.3% 且 展现 > 5000"
+    level: "P2_WARNING"
+    cooldown_min: 30
+
+  cpc_spike:
+    name: "CPC飙升"
+    condition: "CPC > 前日CPC × 1.5"
+    level: "P2_WARNING"
+    cooldown_min: 20
+
+  cpl_over:
+    name: "CPL超标"
+    condition: "CPL > 目标CPL × 1.5"
+    level: "P1_HIGH"
+    cooldown_min: 30
+
+  cpl_slight_over:
+    name: "CPL轻微超标"
+    condition: "目标CPL × 1.2 < CPL ≤ 目标CPL × 1.5"
+    level: "P2_WARNING"
+    cooldown_min: 30
+
+  roi_low:
+    name: "ROI跌破"
+    condition: "ROI < 目标ROI × 0.5"
+    level: "P1_HIGH"
+    cooldown_min: 20
+
+  roi_slight_low:
+    name: "ROI偏低"
+    condition: "目标ROI × 0.5 ≤ ROI < 目标ROI × 0.8"
+    level: "P2_WARNING"
+    cooldown_min: 30
+
+  zero_conversion:
+    name: "零转化空耗"
+    condition: "消耗 > 500 且 转化=0"
+    level: "P2_WARNING"
+    cooldown_min: 60
+
+  budget_80:
+    name: "预算使用80%"
+    condition: "消耗 ≥ 日预算 × 0.8"
+    level: "P3_INFO"
+    cooldown_min: 60
+
+  budget_100:
+    name: "预算超支"
+    condition: "消耗 > 日预算"
+    level: "P1_HIGH"
+    cooldown_min: 30
+
+  balance_low:
+    name: "账户余额不足"
+    condition: "余额 < 近3日日均消耗 × 3"
+    level: "P3_INFO"
+    cooldown_min: 360

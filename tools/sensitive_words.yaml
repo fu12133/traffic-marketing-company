@@ -1,0 +1,501 @@
+# Davy 敏感词配置库 v3.2.1
+# 格式说明：
+#   word: 违规词或短语
+#   type: 违规类型
+#   level: 风险等级 (critical/high/medium/low)
+#   platform: 适用平台 (all/特定平台列表)
+#   rewrite: 推荐合规改写方案
+
+# ============================================================
+# 一、极限词（绝对化用语）
+# ============================================================
+extreme_words:
+  - category: "范畴极限词"
+    words:
+      - word: "最好"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["值得信赖", "广受好评", "优质之选"]
+      - word: "最佳"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["优质", "出色", "出色之选"]
+      - word: "第一品牌"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["行业知名品牌", "口碑品牌", "专注品牌"]
+      - word: "行业第一"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["行业领先", "行业前列", "业内知名"]
+      - word: "全网最低"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["限时优惠价", "超值之选", "特惠体验价"]
+      - word: "国家级"
+        type: "绝对化用语"
+        level: "critical"
+        rewrite: ["高标准", "权威认证"]
+      - word: "最高级"
+        type: "绝对化用语"
+        level: "critical"
+        rewrite: ["高级", "优质"]
+      - word: "顶级"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["优质", "卓越", "出色"]
+      - word: "极致"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["出色", "优质", "非凡"]
+      - word: "唯一"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["专注", "专业", "主打"]
+      - word: "首选"
+        type: "绝对化用语"
+        level: "low"
+        rewrite: ["热门之选", "值得考虑", "备受青睐"]
+      - word: "首创"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["率先推出", "全新推出", "创新打造"]
+      - word: "独一无二"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["别具特色", "风格独特", "与众不同"]
+      - word: "100%"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["高比例", "超预期"]
+      - word: "百分之百"
+        type: "绝对化用语"
+        level: "medium"
+        rewrite: ["高比例", "超预期"]
+
+  - category: "比较极限词"
+    words:
+      - word: "全网"
+        type: "比较词"
+        level: "medium"
+        platforms: ["抖音", "快手", "小红书", "微信"]
+        rewrite: ["全平台（需数据）", "多平台"]
+      - word: "全国"
+        type: "比较词"
+        level: "low"
+        rewrite: ["多地区", "广泛"]
+      - word: "全城"
+        type: "比较词"
+        level: "low"
+        rewrite: ["本地", "同城"]
+      - word: "超值"
+        type: "比较词"
+        level: "low"
+        rewrite: ["高性价比", "实惠"]
+      - word: "最低价"
+        type: "比较词"
+        level: "medium"
+        rewrite: ["优惠价", "好价", "限时价"]
+
+  - category: "承诺极限词"
+    words:
+      - word: "包过"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["系统备考", "全科辅导", "科学学习方案"]
+      - word: "保过"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["系统备考", "全面辅导"]
+      - word: "零风险"
+        type: "金融违规"
+        level: "high"
+        rewrite: ["低风险", "风控完善", "多重保障"]
+      - word: "稳赚"
+        type: "金融违规"
+        level: "critical"
+        rewrite: ["风险可控", "科学风控"]
+      - word: "保本"
+        type: "金融违规"
+        level: "critical"
+        rewrite: ["浮动收益", "业绩参考"]
+      - word: "无效退款"
+        type: "虚假承诺"
+        level: "medium"
+        rewrite: ["售后保障", "满意保障"]
+
+# ============================================================
+# 二、医疗健康敏感词
+# ============================================================
+medical_words:
+  - category: "医疗功效"
+    words:
+      - word: "治愈"
+        type: "医疗功效"
+        level: "critical"
+        rewrite: ["改善", "调理", "养护"]
+      - word: "治疗"
+        type: "医疗功效"
+        level: "high"
+        rewrite: ["调理", "改善", "养护", "舒缓"]
+      - word: "根治"
+        type: "医疗功效"
+        level: "critical"
+        rewrite: ["有效控制", "长期管理", "科学干预"]
+      - word: "痊愈"
+        type: "医疗功效"
+        level: "critical"
+        rewrite: ["恢复", "康复（需资质）"]
+      - word: "见效"
+        type: "医疗功效"
+        level: "high"
+        rewrite: ["坚持使用逐步改善", "持续使用效果更佳"]
+      - word: "速效"
+        type: "医疗功效"
+        level: "high"
+        rewrite: ["科学配比", "高效配方（需资质）"]
+      - word: "特效"
+        type: "医疗功效"
+        level: "high"
+        rewrite: ["显著（需数据）", "有效"]
+      - word: "神效"
+        type: "医疗功效"
+        level: "critical"
+        rewrite: ["有效", "显著（需数据）"]
+      - word: "三天见效"
+        type: "医疗功效"
+        level: "critical"
+        rewrite: ["坚持使用逐步改善", "持续使用效果更佳"]
+      - word: "祖传秘方"
+        type: "医疗功效"
+        level: "high"
+        rewrite: ["经典配方", "科学配比", "专业研发"]
+      - word: "老中医"
+        type: "医疗资质暗示"
+        level: "high"
+        rewrite: ["专业配方", "从业经验", "专业团队"]
+      - word: "临床验证"
+        type: "医疗资质暗示"
+        level: "high"
+        rewrite: ["科学验证", "实验室测试"]
+
+  - category: "医美敏感"
+    words:
+      - word: "隆胸"
+        type: "医美手术"
+        level: "critical"
+        rewrite: ["胸部塑形（需资质）"]
+      - word: "抽脂"
+        type: "医美手术"
+        level: "critical"
+        rewrite: ["形体雕塑（需资质）"]
+      - word: "术前术后"
+        type: "医美对比"
+        level: "high"
+        rewrite: ["项目展示", "方案说明"]
+      - word: "对比照"
+        type: "医美对比"
+        level: "high"
+        rewrite: ["效果示意（标注个体差异）"]
+      - word: "无痛"
+        type: "医美安全"
+        level: "medium"
+        rewrite: ["舒适体验", "体验舒适"]
+      - word: "无副作用"
+        type: "医美安全"
+        level: "high"
+        rewrite: ["温和配方", "科学配方"]
+      - word: "玻尿酸"
+        type: "医美项目"
+        level: "medium"
+        rewrite: ["填充类项目", "注射类项目"]
+
+# ============================================================
+# 三、金融敏感词
+# ============================================================
+financial_words:
+  - category: "收益承诺"
+    words:
+      - word: "保本"
+        type: "金融保本"
+        level: "critical"
+        rewrite: ["浮动收益", "业绩比较基准"]
+      - word: "保收益"
+        type: "金融保本"
+        level: "critical"
+        rewrite: ["业绩参考"]
+      - word: "稳赚"
+        type: "金融诱导"
+        level: "critical"
+        rewrite: ["风险可控", "科学风控"]
+      - word: "稳赢"
+        type: "金融诱导"
+        level: "critical"
+        rewrite: ["科学管理", "稳健运营"]
+      - word: "躺赚"
+        type: "金融诱导"
+        level: "high"
+        rewrite: ["智能管理", "省心管理"]
+      - word: "无风险"
+        type: "金融诱导"
+        level: "critical"
+        rewrite: ["低风险（需资质）", "风控严格"]
+      - word: "高收益"
+        type: "金融诱导"
+        level: "high"
+        rewrite: ["业绩表现", "收益参考"]
+      - word: "财富自由"
+        type: "金融诱导"
+        level: "medium"
+        rewrite: ["财务目标", "资产增值", "财富规划"]
+      - word: "限时抢购"
+        type: "金融诱导"
+        level: "low"
+        platforms: ["金融类"]
+        rewrite: ["开放认购中", "产品开放期"]
+
+  - category: "非法金融"
+    words:
+      - word: "虚拟币"
+        type: "非法金融"
+        level: "critical"
+      - word: "数字货币"
+        type: "非法金融"
+        level: "high"
+        context: "需排除合规的央行数字货币"
+      - word: "炒币"
+        type: "非法金融"
+        level: "critical"
+      - word: "配资"
+        type: "非法金融"
+        level: "critical"
+      - word: "带单"
+        type: "非法金融"
+        level: "high"
+      - word: "拉人头"
+        type: "传销特征"
+        level: "critical"
+
+# ============================================================
+# 四、教育培训敏感词
+# ============================================================
+education_words:
+  - category: "效果承诺"
+    words:
+      - word: "包过"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["系统备考", "全科辅导"]
+      - word: "保录取"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["升学规划", "申请指导"]
+      - word: "押题"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["考点覆盖", "考情分析"]
+      - word: "命中率"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["知识点覆盖", "考纲匹配"]
+      - word: "速成"
+        type: "教育承诺"
+        level: "medium"
+        rewrite: ["高效学习", "科学路径"]
+      - word: "名师"
+        type: "教育资质暗示"
+        level: "low"
+        rewrite: ["资深教师", "经验丰富讲师", "专业师资"]
+      - word: "包就业"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["就业指导", "职业规划"]
+      - word: "内部题"
+        type: "教育承诺"
+        level: "high"
+        rewrite: ["精选习题", "原创题库"]
+
+# ============================================================
+# 五、平台引流/诱导词
+# ============================================================
+platform_violation_words:
+  - category: "引流词"
+    words:
+      - word: "加微信"
+        type: "平台引流"
+        level: "high"
+        platforms: ["抖音", "快手", "小红书", "微信"]
+        rewrite: ["私信获取", "点击链接"]
+      - word: "加V"
+        type: "平台引流"
+        level: "high"
+        platforms: ["抖音", "快手", "小红书"]
+        rewrite: ["官方渠道", "站内联系"]
+      - word: "公众号"
+        type: "平台引流"
+        level: "medium"
+        platforms: ["抖音", "快手", "小红书"]
+        rewrite: ["官方账号", "关注获取"]
+      - word: "扫码"
+        type: "平台引流"
+        level: "medium"
+        platforms: ["抖音", "快手", "微信"]
+        rewrite: ["点击领取", "平台内领取"]
+      - word: "私信我"
+        type: "平台引流"
+        level: "low"
+        platforms: ["抖音"]
+        rewrite: ["评论区互动", "关注获取更多"]
+
+  - category: "诱导点击"
+    words:
+      - word: "震惊"
+        type: "诱导点击"
+        level: "medium"
+        rewrite: ["值得关注", "重要消息"]
+      - word: "不转不是中国人"
+        type: "诱导点击"
+        level: "critical"
+        rewrite: ["欢迎分享"]
+      - word: "紧急通知"
+        type: "诱导点击"
+        level: "medium"
+        rewrite: ["重要提醒", "温馨提示"]
+      - word: "赶紧看"
+        type: "诱导点击"
+        level: "low"
+        rewrite: ["值得了解", "建议收藏"]
+
+# ============================================================
+# 六、敏感/违禁内容
+# ============================================================
+sensitive_words:
+  - category: "政治敏感"
+    words:
+      - word: "政治人物名"
+        type: "政治敏感"
+        level: "critical"
+        note: "需动态更新，涉及现任领导人需特别处理"
+      - word: "敏感事件"
+        type: "政治敏感"
+        level: "critical"
+        note: "需动态更新，按网信办要求执行"
+
+  - category: "色情低俗"
+    words:
+      - word: "色情词汇"
+        type: "色情低俗"
+        level: "critical"
+        note: "引用开源色情词库"
+      - word: "低俗暗示"
+        type: "色情低俗"
+        level: "high"
+
+  - category: "暴力违禁"
+    words:
+      - word: "枪支"
+        type: "违禁品"
+        level: "critical"
+      - word: "毒品"
+        type: "违禁品"
+        level: "critical"
+      - word: "赌博"
+        type: "违禁品"
+        level: "critical"
+      - word: "博彩"
+        type: "违禁品"
+        level: "critical"
+
+# ============================================================
+# 七、合规检测配置
+# ============================================================
+detection_config:
+  ocr:
+    enabled: true
+    engines: ["paddleocr", "tesseract"]
+    min_confidence: 0.85
+
+  text_analysis:
+    embedding_model: "text2vec-base-chinese"
+    nlp_model: "bert-base-chinese"
+    similarity_threshold: 0.85
+
+  batch:
+    max_parallel: 10
+    timeout_seconds: 120
+    output_format: "json"
+
+  risk_mapping:
+    critical: "封号"
+    high: "限流封禁"
+    medium: "警告"
+    low: "限流观察"
+    pass: "合规通过"
+
+  rewrite_strategy:
+    min_change: "增量改写-精准替换"
+    full_rewrite: "全篇重写"
+    restructure: "结构重组"
+    smart_auto: "智能改写-自动匹配校验"
+
+# ============================================================
+# 八、开源依赖配置
+# ============================================================
+open_source_deps:
+  sensitive_word_libs:
+    - name: "sensitive-word"
+      url: "https://github.com/houbb/sensitive-word"
+      usage: "Java基础敏感词库，可参考词库结构"
+      license: "Apache-2.0"
+    - name: "dfa-sensitive-word"
+      url: "https://github.com/importcjj/dfa-sensitive-word"
+      usage: "Python DFA算法敏感词过滤"
+      license: "MIT"
+    - name: "f单独敏感词库"
+      url: "https://github.com/fighting41love/funNLP"
+      usage: "中文NLP资源，含敏感词库"
+      license: "Apache-2.0"
+
+  nlp_models:
+    - name: "ernie-3.0"
+      url: "https://github.com/PaddlePaddle/PaddleNLP"
+      usage: "文本分类/语义理解，可用于违规内容识别"
+      license: "Apache-2.0"
+    - name: "text2vec-base-chinese"
+      url: "https://huggingface.co/shibing624/text2vec-base-chinese"
+      usage: "文本相似度计算，用于改写内容验证"
+      license: "MIT"
+    - name: "roberta-wwm-ext"
+      url: "https://huggingface.co/hfl/chinese-roberta-wwm-ext"
+      usage: "中文预训练模型，违规文本检测"
+      license: "Apache-2.0"
+
+  ocr:
+    - name: "PaddleOCR"
+      url: "https://github.com/PaddlePaddle/PaddleOCR"
+      usage: "图片文字提取，用于封面/素材文字检测"
+      license: "Apache-2.0"
+    - name: "EasyOCR"
+      url: "https://github.com/JaidedAI/EasyOCR"
+      usage: "轻量OCR，可用于多语言素材检测"
+      license: "Apache-2.0"
+
+  content_moderation:
+    - name: "BetterDummy-API"
+      url: "https://github.com/tzcoo/BetterDummy-API"
+      usage: "文本内容安全检测API参考"
+      license: "MIT"
+    - name: "nsfwjs"
+      url: "https://github.com/infinitered/nsfwjs"
+      usage: "图片NSFW检测，敏感画面识别"
+      license: "MIT"
+
+  standards:
+    - name: "广告法词库"
+      url: "https://github.com/madawei2699/ad-law"
+      usage: "广告法违规词库参考"
+      license: "MIT"
+    - name: "违禁词过滤"
+      url: "https://github.com/toolgood/ToolGood.Words"
+      usage: "多语言敏感词过滤，含广告违规词"
+      license: "MIT"
